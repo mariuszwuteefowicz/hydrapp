@@ -2,21 +2,29 @@ const addButton = document.querySelector('.add--js');
 const subtractButton = document.querySelector('.subtract--js');
 const counterValue = document.querySelector('.counter--js');
 
-let glases = 0;
+let glasses = 0;
+
+const key = new Date().toISOString().slice(0,10);
+
+if (localStorage.getItem(key)){
+glasses = parseInt(localStorage.getItem(key));
+}
 
 const setCounterValue = (value) => {
     counterValue.innerHTML = value;
+    localStorage.setItem(key, value)
 }
-setCounterValue(glases)
+
+setCounterValue(glasses)
 
 addButton.addEventListener('click', () => {       
-    glases = glases + 1;
-    setCounterValue(glases);
+    glasses = glasses + 1;
+    setCounterValue(glasses);
 })
 
 subtractButton.addEventListener('click', () => {
-    if (glases >=1){
-    glases = glases - 1;
-    setCounterValue(glases);
+    if (glasses >=1){
+    glasses = glasses - 1;
+    setCounterValue(glasses);
     }
 })
